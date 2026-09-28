@@ -68,11 +68,12 @@ def ensure_database():
             )
         ]
 
-        connection.executemany("""
-            INSERT INTO projects
-            (title, description, technologies, github_link)
-            VALUES (%s, %s, %s, %s)
-        """, projects)
+        for project in projects:
+            connection.execute("""
+                INSERT INTO projects
+                (title, description, technologies, github_link)
+                VALUES (%s, %s, %s, %s)
+            """, project)
 
     connection.commit()
     connection.close()
