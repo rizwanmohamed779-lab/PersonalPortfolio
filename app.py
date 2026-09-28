@@ -1,16 +1,20 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
 import psycopg
 import os
+from psycopg.rows import dict_row
 
 app = Flask(__name__)
 app.secret_key = "portfolio-secret-key"
 
 
 def get_db_connection():
-    return psycopg.connect(os.environ["DATABASE_URL"])
+    return psycopg.connect(
+        os.environ["DATABASE_URL"],
+        row_factory=dict_row
+    )
 
 
-def create_database():
+def ensure_database():
     connection = get_db_connection()
 
     connection.execute("""
@@ -33,8 +37,8 @@ def create_database():
     """)
 
     project_count = connection.execute(
-        "SELECT COUNT(*) FROM projects"
-    ).fetchone()[0]
+        "SELECT COUNT(*) AS count FROM projects"
+    ).fetchone()["count"]
 
     if project_count == 0:
         projects = [
@@ -76,10 +80,12 @@ def create_database():
 
 @app.route("/")
 def home():
+    ensure_database()
+
     connection = get_db_connection()
 
     projects = connection.execute(
-        "SELECT * FROM projects"
+        "SELECT * FROM projects ORDER BY id"
     ).fetchall()
 
     connection.close()
@@ -89,6 +95,8 @@ def home():
 
 @app.route("/contact", methods=["POST"])
 def contact():
+    ensure_database()
+
     name = request.form["name"]
     email = request.form["email"]
     message = request.form["message"]
@@ -115,5 +123,5 @@ def resume():
 
 
 if __name__ == "__main__":
-    create_database()
+    ensure_database()
     app.run(debug=True)
