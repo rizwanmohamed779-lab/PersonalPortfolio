@@ -1,0 +1,415 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    line-height: 1.6;
+}
+
+/* =========================
+   Navigation
+========================= */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 4%;
+    background: #020617;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav h2 {
+    color: #38bdf8;
+    font-size: 32px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+/* =========================
+   Hero Section
+========================= */
+
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 4%;
+}
+
+.hero-text {
+    max-width: 1100px;
+}
+
+.hello {
+    color: #38bdf8;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin: 10px 0;
+}
+
+.hero h2 {
+    color: #cbd5e1;
+    font-size: 32px;
+    margin-top: 20px;
+}
+
+.hero p {
+    margin-top: 25px;
+    color: #cbd5e1;
+    font-size: 20px;
+    max-width: 1000px;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.buttons {
+    margin-top: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #38bdf8;
+    color: #020617;
+    text-decoration: none;
+    border-radius: 7px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn.outline {
+    background: transparent;
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+}
+
+.btn.outline:hover {
+    background: #38bdf8;
+    color: #020617;
+}
+
+/* =========================
+   Sections
+========================= */
+
+section {
+    padding: 90px 4%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 45px;
+    margin-bottom: 60px;
+    color: #38bdf8;
+}
+
+/* =========================
+   About
+========================= */
+
+.about-content {
+    max-width: 900px;
+    margin: auto;
+    color: #cbd5e1;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.about-content p {
+    margin-bottom: 25px;
+}
+
+/* =========================
+   Skills
+========================= */
+
+.skills-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.skill {
+    padding: 15px 25px;
+    background: #1e293b;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    font-size: 17px;
+    transition: 0.3s;
+}
+
+.skill:hover {
+    border-color: #38bdf8;
+    transform: translateY(-3px);
+}
+
+/* =========================
+   Projects
+========================= */
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+}
+
+.project-card {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 14px;
+    border: 1px solid #334155;
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8;
+}
+
+.project-card h3 {
+    color: #38bdf8;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.project-card p {
+    color: #cbd5e1;
+    margin-bottom: 25px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.project-card span {
+    display: inline-block;
+    background: #334155;
+    color: white;
+    padding: 7px 14px;
+    margin-right: 6px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* GitHub Button */
+
+.github-btn {
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 9px 18px;
+    background: #38bdf8;
+    color: #020617;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.github-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   Contact
+========================= */
+
+form {
+    max-width: 650px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+input,
+textarea {
+    padding: 17px;
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    font-family: Arial, sans-serif;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 2px #38bdf8;
+}
+
+textarea {
+    height: 170px;
+    resize: none;
+}
+
+button {
+    padding: 17px;
+    border: none;
+    border-radius: 8px;
+    background: #38bdf8;
+    color: #020617;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   Flash Message
+========================= */
+
+.flash-message {
+    position: fixed;
+    top: 85px;
+    right: 25px;
+    padding: 15px 25px;
+    background: #22c55e;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    z-index: 2000;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #020617;
+    color: #94a3b8;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px 5%;
+    }
+
+    nav h2 {
+        font-size: 28px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 16px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 100px 6%;
+    }
+
+    .hello {
+        font-size: 22px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 17px;
+    }
+
+    .buttons {
+        gap: 12px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    section {
+        padding: 70px 6%;
+    }
+
+    .section-title {
+        font-size: 35px;
+        margin-bottom: 40px;
+    }
+
+    .about-content {
+        font-size: 17px;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .project-card {
+        padding: 28px;
+    }
+
+    .project-card h3 {
+        font-size: 23px;
+    }
+
+    .github-btn {
+        margin-left: 0;
+    }
+
+    form {
+        width: 100%;
+    }
+}

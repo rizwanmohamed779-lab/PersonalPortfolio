@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohamed Rizwan M | Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+     {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash-message">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Navigation -->
+    <nav>
+        <h2>Rizwan.</h2>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Home -->
+    <section id="home" class="hero">
+
+        <div class="hero-text">
+            <p class="hello">Hello, I'm</p>
+
+            <h1>Mohamed Rizwan M</h1>
+
+            <h2>AI & Data Science Student</h2>
+
+            <p>
+                I build intelligent applications using Python,
+                Machine Learning and modern web technologies.
+            </p>
+
+    <div class="buttons">
+
+    <a href="#projects" class="btn">
+        View My Projects
+    </a>
+
+    <a href="#contact" class="btn outline">
+        Contact Me
+    </a>
+
+    <a href="/resume" class="btn outline" target="_blank">
+        View Resume
+    </a>
+
+    <a href="https://github.com/rizwanmohamed779-lab/"
+       class="btn outline"
+       target="_blank">
+        GitHub
+    </a>
+
+    <a href="https://www.linkedin.com/in/mohamed-rizwan-m-3bb52032a"
+       class="btn outline"
+       target="_blank">
+        LinkedIn
+    </a>
+
+</div>
+        </div>
+
+    </section>
+
+    <!-- About -->
+    <section id="about">
+
+        <h2 class="section-title">About Me</h2>
+
+        <div class="about-content">
+
+            <p>
+                I am an AI & Data Science student passionate about
+                Artificial Intelligence, Machine Learning and software
+                development. I enjoy building practical projects that
+                solve real-world problems using technology.
+            </p>
+
+            <p>
+                I am continuously improving my programming, problem-solving
+                and development skills while working on innovative projects.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+
+        <h2 class="section-title">My Skills</h2>
+
+        <div class="skills-container">
+
+            <div class="skill">Python</div>
+            <div class="skill">Java</div>
+            <div class="skill">SQL</div>
+            <div class="skill">Machine Learning</div>
+            <div class="skill">HTML & CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Flask</div>
+            <div class="skill">Git & GitHub</div>
+
+        </div>
+
+    </section>
+
+    <!-- Projects -->
+<section id="projects">
+
+    <h2 class="section-title">My Projects</h2>
+
+    <div class="projects-container">
+
+        {% for project in projects %}
+
+        <div class="project-card">
+
+            <h3>{{ project["title"] }}</h3>
+
+            <p>
+                {{ project["description"] }}
+            </p>
+
+            <span>{{ project["technologies"] }}</span>
+
+            {% if project["github_link"] %}
+                <a href="{{ project['github_link'] }}"
+                   target="_blank"
+                   class="github-btn">
+                    View on GitHub
+                </a>
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+    <!-- Contact -->
+    <section id="contact">
+
+        <h2 class="section-title">Contact Me</h2>
+
+        <form action="/contact" method="POST">
+
+            <input type="text" name="name" placeholder="Your Name" required>
+
+            <input type="email" name="email" placeholder="Your Email" required>
+
+            <textarea name="message" placeholder="Your Message" required></textarea>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Mohamed Rizwan M. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
