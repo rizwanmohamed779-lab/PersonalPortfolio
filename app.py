@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, send_from_directory
-import sqlite3
+import psycopg
 import os
 
 app = Flask(__name__)
@@ -7,9 +7,7 @@ app.secret_key = "portfolio-secret-key"
 
 
 def get_db_connection():
-    connection = sqlite3.connect("database.db")
-    connection.row_factory = sqlite3.Row
-    return connection
+    return psycopg.connect(os.environ["DATABASE_URL"])
 
 
 def create_database():
@@ -17,7 +15,7 @@ def create_database():
 
     connection.execute("""
         CREATE TABLE IF NOT EXISTS messages (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             name TEXT NOT NULL,
             email TEXT NOT NULL,
             message TEXT NOT NULL
@@ -26,7 +24,7 @@ def create_database():
 
     connection.execute("""
         CREATE TABLE IF NOT EXISTS projects (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             title TEXT NOT NULL,
             description TEXT NOT NULL,
             technologies TEXT NOT NULL,
@@ -69,7 +67,7 @@ def create_database():
         connection.executemany("""
             INSERT INTO projects
             (title, description, technologies, github_link)
-            VALUES (?, ?, ?, ?)
+            VALUES (%s, %s, %s, %s)
         """, projects)
 
     connection.commit()
@@ -98,7 +96,7 @@ def contact():
     connection = get_db_connection()
 
     connection.execute(
-        "INSERT INTO messages (name, email, message) VALUES (?, ?, ?)",
+        "INSERT INTO messages (name, email, message) VALUES (%s, %s, %s)",
         (name, email, message)
     )
 
@@ -108,6 +106,7 @@ def contact():
     flash("Your message has been sent successfully!")
 
     return redirect(url_for("home"))
+
 
 @app.route("/resume")
 def resume():
